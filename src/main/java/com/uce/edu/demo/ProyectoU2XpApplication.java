@@ -9,7 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.service.IEstudianteJdbcService;
 import com.uce.edu.demo.service.IPersonaJdbcService;
+import com.uce.edu.demo.to.Estudiante;
 import com.uce.edu.demo.to.Persona;
 
 @SpringBootApplication
@@ -18,6 +20,8 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 	private static final Logger LOG= LoggerFactory.getLogger(ProyectoU2XpApplication.class);
 	@Autowired
 	private IPersonaJdbcService iPersonaJdbcService;
+	@Autowired
+	private IEstudianteJdbcService estudianteJdbcService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2XpApplication.class, args);
@@ -43,7 +47,32 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 		this.iPersonaJdbcService.eliminar(3);*/
 		
 		
-		LOG.info(this.iPersonaJdbcService.buscarPorId(1).toString());
+		//LOG.info(this.iPersonaJdbcService.buscarPorId(1).toString());
+		
+		Estudiante e1=new Estudiante(17122345, "Pedro", "Paez", 19, "Segundo");
+		Estudiante e2=new Estudiante(17122354, "Xavier", "Paez", 20, "Tercero");
+		Estudiante e3=new Estudiante(17122363, "Mike", "Rodriguez", 22, "Tercero");
+		Estudiante e4=new Estudiante(17122372, "Sebastian", "Ortiz", 29, "Octavo");
+		Estudiante estudiante1=new Estudiante(12345, "Juan", "Ignacion", 29, "Decimo");
+
+		//Insertar
+		
+		
+		LOG.info("Se ha insertado : "+ estudiante1 );
+
+		//actualizar
+		Estudiante e5=new Estudiante(12345, "Xavier", "Paez", 23, "Tercero");
+		
+		LOG.info("Se ha actualizado el estudiante: "+ e5);
+		//this.estudianteJdbcService.actualizar(e5);
+		
+		LOG.info("Se ha buscado el estudiante: "+ e5);
+		//this.estudianteJdbcService.buscarPorId(12345);
+		//Eliminar
+		LOG.info("Se ha eliminado el estudiante: "+ e5);
+		this.estudianteJdbcService.eliminar(17122372);
+		//Buscar
+	//	this.estudianteJdbcService.buscarPorId(17122354);
 	}
 
 }
