@@ -1,5 +1,7 @@
 package com.uce.edu.demo;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +41,13 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 			
 			Persona per = new Persona();
 			//per.setId(8);
-			per.setNombre("Pepito12");
+			per.setNombre("Pedro");
 			per.setApellido("Perez");
+			per.setGenero("Masculino");
+			per.setCedula("1713");
 
 			// GUARDAR
-			this.iPersonaJpaService.guardar(per);
+			//this.iPersonaJpaService.guardar(per);
 
 			Persona per1 = new Persona();
 			per1.setId(3);
@@ -55,6 +59,15 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 
 			// ELIMINAR
 			//this.iPersonaJpaService.eliminar(2);
+			
+			//Busqueda por cedula
+			Persona p=this.iPersonaJpaService.buscarPorCedula("1713");
+			LOG.info("Persona encontrada: "+ p);
+			
+			List<Persona> listaPersona=this.iPersonaJpaService.buscarPorApellido("Perez");
+			for(Persona persona: listaPersona) {
+				LOG.info("Persona: "+ persona);
+			}
 
 	}
 
