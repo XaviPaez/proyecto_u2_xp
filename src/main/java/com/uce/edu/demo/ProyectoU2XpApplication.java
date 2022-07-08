@@ -41,13 +41,13 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 			
 			Persona per = new Persona();
 			//per.setId(8);
-			per.setNombre("Pedro");
-			per.setApellido("Perez");
-			per.setGenero("Masculino");
-			per.setCedula("1713");
+			per.setNombre("Isabel");
+			per.setApellido("Cadena");
+			per.setGenero("Femenino");
+			per.setCedula("1334");
 
 			// GUARDAR
-			//this.iPersonaJpaService.guardar(per);
+		//	this.iPersonaJpaService.guardar(per);
 
 			Persona per1 = new Persona();
 			per1.setId(3);
@@ -61,13 +61,25 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 			//this.iPersonaJpaService.eliminar(2);
 			
 			//Busqueda por cedula
-			Persona p=this.iPersonaJpaService.buscarPorCedula("1713");
+		/*	Persona p=this.iPersonaJpaService.buscarPorCedula("1713");
 			LOG.info("Persona encontrada: "+ p);
 			
 			List<Persona> listaPersona=this.iPersonaJpaService.buscarPorApellido("Perez");
 			for(Persona persona: listaPersona) {
+				LOG.info("Persona: "+ persona);*/
+			//}
+			
+			//Busqueda por Nombre
+		
+			List<Persona> listaPersona= this.iPersonaJpaService.buscarPorNombre("Pepito12");
+			for(Persona persona:listaPersona) {
 				LOG.info("Persona: "+ persona);
 			}
+			
+			List<Persona> listaPersonaGenero= this.iPersonaJpaService.buscarPorGenero("Femenino");
+			for(Persona persona:listaPersonaGenero) {
+				LOG.info("Persona: "+ persona);
+			}	
 
 	}
 

@@ -48,4 +48,16 @@ public class PersonaJpaServiceImpl implements IPersonaJpaService {
 		// TODO Auto-generated method stub
 		return this.iPersonaJpaRepository.buscarPorApellido(apellido);
 	}
+
+	@Override
+	public List<Persona> buscarPorNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorNombre(nombre);
+	}
+
+	@Override
+	public List<Persona> buscarPorGenero(String genero) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorGenero(genero);
+	}
 }
