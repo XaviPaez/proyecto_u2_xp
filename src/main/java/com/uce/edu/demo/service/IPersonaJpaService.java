@@ -21,4 +21,8 @@ public interface IPersonaJpaService {
 	public void eliminar(int id);
 
 	public Persona buscarPorId(int id);
+
+	public int actualizarPorApellido(String genero, String apellido);
+
+	public int eliminarPorGenero(String genero);
 }

@@ -75,6 +75,24 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		return myQuery.getResultList();
 	}
 
+	@Override
+	public int actualizarPorApellido(String genero, String apellido) {
+		// TODO Auto-generated method stub
+		Query myquery = this.entityManager.createQuery("UPDATE Persona p SET p.genero = :datoGenero WHERE p.apellido = :datoApellido");
+		myquery.setParameter("datoGenero", genero);
+		myquery.setParameter("datoApellido", apellido);
+		return myquery.executeUpdate();
+		
+	}
+
+	@Override
+	public int eliminarPorGenero(String genero) {
+		// TODO Auto-generated method stub
+		Query myQuery=this.entityManager.createQuery("DELETE FROM Persona p WHERE p.genero = :datoGenero");
+		myQuery.setParameter("datoGenero", genero);
+		return myQuery.executeUpdate();
+	}
+
 
 
 }
