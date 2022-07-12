@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.repository.IPersonaJpaRepository;
 import com.uce.edu.demo.repository.modelo.Persona;
+
 @Service
 public class PersonaJpaServiceImpl implements IPersonaJpaService {
 
 	@Autowired
 	private IPersonaJpaRepository iPersonaJpaRepository;
-	
+
 	@Override
 	public void guardar(Persona persona) {
 		// TODO Auto-generated method stub
@@ -71,5 +72,29 @@ public class PersonaJpaServiceImpl implements IPersonaJpaService {
 	public int eliminarPorGenero(String genero) {
 		// TODO Auto-generated method stub
 		return this.iPersonaJpaRepository.eliminarPorGenero(genero);
+	}
+
+	@Override
+	public Persona buscarPorCedulaTyped(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaTyped(cedula);
+	}
+
+	@Override
+	public Persona buscarPorCedulaNamed(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaNamed(cedula);
+	}
+
+	@Override
+	public Persona buscarPorCedulaTypedNamed(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaTypedNamed(cedula);
+	}
+
+	@Override
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorNombreApellido(nombre, apellido);
 	}
 }
