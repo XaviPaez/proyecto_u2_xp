@@ -19,12 +19,6 @@ public interface IPersonaJpaRepository {
 
 	public Persona buscarPorCedula(String cedula);
 
-	public Persona buscarPorCedulaTyped(String cedula);
-
-	public Persona buscarPorCedulaNamed(String cedula);
-
-	public Persona buscarPorCedulaTypedNamed(String cedula);
-
 	public Persona buscarPorId(Integer id);
 
 	public void insertar(Persona persona);
@@ -37,5 +31,10 @@ public interface IPersonaJpaRepository {
 
 	public int eliminarPorGenero(String genero);
 
+	public Persona buscarPorCedulaTyped(String cedula);
+
+	public Persona buscarPorCedulaNamed(String cedula);
+
+	public Persona buscarPorCedulaTypedNamed(String cedula);
 
 }

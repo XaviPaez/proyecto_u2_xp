@@ -2,43 +2,64 @@ package com.uce.edu.demo.repository.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="estudiante")
+@NamedQueries({
+		@NamedQuery(name = "Estudiante.buscarPorNombre", query = "SELECT e FROM Estudiante e WHERE e.nombre = : datoNombre"),
+		@NamedQuery(name = "Estudiante.buscarPorSemestre", query = "SELECT e FROM Estudiante e WHERE e.semestre = : datoSemestre"),
+		@NamedQuery(name = "Estudiante.buscarPorSemestreEdadGenero", query = "SELECT e FROM Estudiante e WHERE e.semestre=: datoSemestre AND e.edad=: datoEdad AND e.genero =: datoGenero  ORDER BY e.id"),
+		@NamedQuery(name = "Estudiante.buscarPorSemestreGenero", query = "SELECT e FROM Estudiante e WHERE e.semestre=: datoSemestre AND e.genero=: datoGenero  ORDER BY e.edad")})
+
+@Table(name = "estudiante")
 public class Estudiante {
 
 	@Id
-	@Column(name = "cedula")
-	private int cedula;
-	@Column(name = "nombre")
+	@Column(name = "estu_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name_generator")
+	@SequenceGenerator(name = "name_generator", sequenceName = "estu_id_seq", allocationSize = 1)
+	private Integer id;
+	@Column(name = "estu_cedula")
+	private String cedula;
+	@Column(name = "estu_nombre")
 	private String nombre;
-	@Column(name = "apellido")
+	@Column(name = "estu_apellido")
 	private String apellido;
-	@Column(name = "edad")
-	private int edad;
-	@Column(name = "semestre")
+	@Column(name = "estu_edad")
+	private String edad;
+	@Column(name = "estu_semestre")
 	private String semestre;
-
-	@Override
-	public String toString() {
-		return "Estudiante [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad
-				+ ", semestre=" + semestre + "]";
-	}
+	@Column(name = "estu_genero")
+	private String genero;
 
 	// SET Y GET
 
-	public int getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(int cedula) {
-		this.cedula = cedula;
+	@Override
+	public String toString() {
+		return "Estudiante [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido
+				+ ", edad=" + edad + ", semestre=" + semestre + ", genero=" + genero + "]";
 	}
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setNombre(String nombre) {
@@ -53,11 +74,11 @@ public class Estudiante {
 		this.apellido = apellido;
 	}
 
-	public int getEdad() {
+	public String getEdad() {
 		return edad;
 	}
 
-	public void setEdad(int edad) {
+	public void setEdad(String edad) {
 		this.edad = edad;
 	}
 
@@ -67,6 +88,22 @@ public class Estudiante {
 
 	public void setSemestre(String semestre) {
 		this.semestre = semestre;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 }
