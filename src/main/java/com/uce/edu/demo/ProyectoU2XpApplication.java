@@ -34,49 +34,11 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Estudiante estudiante=new Estudiante();
-		estudiante.setNombre("Claudio");
-		estudiante.setApellido("Bieler");
-		estudiante.setEdad("25");
-		estudiante.setCedula("2008");
-		estudiante.setSemestre("Octavo");
-		estudiante.setGenero("Masculino");
+
+		this.iPersonaJpaService.buscarPorCedulaNative("1713");
 		
-		this.estudianteJpaService.guardar(estudiante);
-	
-		LOG.info("\n");
-		//1 TypedQuery
-		LOG.info("TypedQuery\n");
-		Estudiante estuTyped= this.estudianteJpaService.buscarPorCedulaTyped("1234");
-		LOG.info("Estudiante Typed: "+ estuTyped);
+		this.iPersonaJpaService.buscarPorCedulaNamedNative("1713");
 		
-		List<Estudiante> estuTyped1=this.estudianteJpaService.buscarPorApellidoTyped("Paez");
-		for(Estudiante estu:estuTyped1) {
-			LOG.info("Estudiantes typed: "+ estu );
-		}
-		LOG.info("\n");
-		//2 NamedQuery
-		LOG.info("NamedQuery\n");
-		Estudiante estuNamed=this.estudianteJpaService.buscarPorNombreNamed("Xavier");
-		LOG.info("Estudiante Named: "+ estuNamed);
-		
-		List<Estudiante> estuNamed1=this.estudianteJpaService.buscarPorSemestreNamed("Primero");
-		for(Estudiante estu1:estuNamed1) {
-			LOG.info("Estudiantes Named:"+ estu1);
-		}
-		LOG.info("\n");
-		//3 TypedNamedQuery
-		LOG.info("TypedNamedQuery\n");
-		List<Estudiante> estuTypedNamed=this.estudianteJpaService.buscarPorSemestreEdadGeneroTypedNamed("Primero", "19", "Femenino");
-		for(Estudiante e:estuTypedNamed) {
-			LOG.info("Estudiantes TypedNamed:"+ e);
-			
-		List<Estudiante> estuTypedNamed1=this.estudianteJpaService.buscarPorSemestreGeneroTypednamed("Primero", "Femenino");
-		for(Estudiante e1: estuNamed1) {
-			LOG.info("Estudiantes TypedNamed: "+ e1);
-		}
-		
-		}
 		
 	
 
