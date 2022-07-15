@@ -33,16 +33,41 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		
 
-		this.iPersonaJpaService.buscarPorCedulaNative("1713");
 		
-		this.iPersonaJpaService.buscarPorCedulaNamedNative("1713");
+		//1. NativeQuery
 		
+		LOG.info("\n");
 		
-	
-
+		LOG.info("Native");
+		LOG.info("*********1**********");
+		List<Estudiante> estuNative = this.estudianteJpaService.buscarPorApellidoNative("Cadena");
+		for(Estudiante estudiante: estuNative) {
+			LOG.info("Estudiante Native: "+ estudiante);
 		
 	}
 
-}
+		LOG.info("*********2**********");
+		List<Estudiante> estuNative1 = this.estudianteJpaService.buscarPorSemestreNative("Sexto");
+		for(Estudiante estudiante: estuNative1) {
+			LOG.info("Estudiante Native1: "+ estudiante);
+		
+	}
+		LOG.info("\n");
+		LOG.info("Named Native");
+		LOG.info("*********1**********");
+		//2. NamedNativeQuery
+		List<Estudiante> estuNamedNative = this.estudianteJpaService.buscarPorNombreGeneroNamedNative("Isabel", "Femenino");
+		for(Estudiante estudiante: estuNamedNative) {
+			LOG.info("Estudiante namednative: "+ estudiante);
+						
+		}
+		LOG.info("*********2**********");
+		List<Estudiante> estuNamedNative1 = this.estudianteJpaService.buscarPorSemestreGeneroNamedNative("Octavo", "Femenina");
+		for(Estudiante estudiante: estuNamedNative1) {
+			LOG.info("Estudiante namednative1: "+ estudiante);
+						
+		}
+		
+
+}}

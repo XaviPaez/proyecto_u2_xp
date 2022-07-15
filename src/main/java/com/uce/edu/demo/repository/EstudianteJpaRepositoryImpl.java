@@ -58,8 +58,8 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository {
 	@Override
 	public List<Estudiante> buscarPorApellidoTyped(String apellido) {
 		// TODO Auto-generated method stub
-		TypedQuery<Estudiante> miTypedQuery = this.entityManager
-				.createQuery("SELECT e FROM Estudiante e WHERE e.apellido=: datoApellido ORDER BY e.edad", Estudiante.class);
+		TypedQuery<Estudiante> miTypedQuery = this.entityManager.createQuery(
+				"SELECT e FROM Estudiante e WHERE e.apellido=: datoApellido ORDER BY e.edad", Estudiante.class);
 		miTypedQuery.setParameter("datoApellido", apellido);
 		return miTypedQuery.getResultList();
 
@@ -105,7 +105,46 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository {
 
 		return myQuery.getResultList();
 
-	
+	}
+
+	@Override
+	public List<Estudiante> buscarPorSemestreNative(String semestre) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager
+				.createNativeQuery("SELECT * FROM estudiante WHERE estu_semestre = :datoSemestre", Estudiante.class);
+		myQuery.setParameter("datoSemestre", semestre);
+		return (List<Estudiante>) myQuery.getResultList();
+	}
+
+	@Override
+	public List<Estudiante> buscarPorApellidoNative(String apellido) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager
+				.createNativeQuery("SELECT * FROM estudiante WHERE estu_Apellido = :datoApellido", Estudiante.class);
+		myQuery.setParameter("datoApellido", apellido);
+		return (List<Estudiante>) myQuery.getResultList();
+
+	}
+
+	@Override
+	public List<Estudiante> buscarPorSemestreGeneroNamedNative(String semestre, String genero) {
+		// TODO Auto-generated method stub
+		TypedQuery<Estudiante> myQuery = this.entityManager
+				.createNamedQuery("Estudiante.buscarPorSemestreGeneroNamedNative", Estudiante.class);
+		myQuery.setParameter("datoSemestre", semestre);
+		myQuery.setParameter("datoGenero", genero);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Estudiante> buscarPorNombreGeneroNamedNative(String nombre, String genero) {
+		// TODO Auto-generated method stub
+		TypedQuery<Estudiante> myQuery = this.entityManager
+				.createNamedQuery("Estudiante.buscarPorNombreGeneroNamedNative", Estudiante.class);
+		myQuery.setParameter("datoNombre", nombre);
+		myQuery.setParameter("datoGenero", genero);
+		return myQuery.getResultList();
+
 	}
 
 }

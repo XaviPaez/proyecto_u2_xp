@@ -2,6 +2,7 @@ package com.uce.edu.demo.service;
 
 import java.util.List;
 
+import com.uce.edu.demo.repository.modelo.Estudiante;
 import com.uce.edu.demo.repository.modelo.Persona;
 
 public interface IPersonaJpaService {
@@ -37,5 +38,8 @@ public interface IPersonaJpaService {
 	public Persona buscarPorCedulaNative(String cedula);
 	
 	public Persona buscarPorCedulaNamedNative(String cedula);
+	
+
+
 
 }
