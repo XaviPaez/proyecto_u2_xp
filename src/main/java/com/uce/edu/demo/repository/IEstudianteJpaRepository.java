@@ -35,4 +35,7 @@ public interface IEstudianteJpaRepository {
 
 	public List<Estudiante> buscarPorNombreGeneroNamedNative(String nombre, String genero);
 
+	public List<Estudiante> buscarDinamicamenteSemestreApellidoEdad(String semestre, String apellido, String edad);
+
+	public List<Estudiante> buscarDinamicamentePorLetraSemestreApellido(String Apellido, String letra, String semestre);
 }

@@ -34,14 +34,18 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-
-		
-		
-	Persona perTyped= this.iPersonaJpaService.buscarPorCedulaCriteriaApi("1713");
-	LOG.info("Persona CriteriaApi: "+ perTyped);
 	
-	Persona perDinamica= this.iPersonaJpaService.buscarDinamicamente("Valeria", "Acosta", "Femenino");
-		LOG.info("Persona Dinamica: "+ perDinamica);
-
+		LOG.info("\n");
+		LOG.info("Estudiante Criteria Api 1");
+		List<Estudiante> estuDinamica= this.estudianteJpaService.buscarDinamicamenteSemestreApellidoEdad("Sexto", "Acosta", "22");
+		for(Estudiante estudianteDinamica: estuDinamica) {
+			LOG.info("Estudiante Dinamico: "+ estudianteDinamica);
+		}
+		LOG.info("\n");
+		LOG.info("Estudiante Criteria Api 2");
+		List<Estudiante> estuDinamica1= this.estudianteJpaService.buscarDinamicamentePorLetraSemestreApellido("Acosta", "A", "Primero");
+		for(Estudiante estudianteDinamica: estuDinamica1) {
+			LOG.info("Estudiante Dinamico: "+ estudianteDinamica);
+		}
+		
 }}
