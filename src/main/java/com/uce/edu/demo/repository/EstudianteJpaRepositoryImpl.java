@@ -15,7 +15,11 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.repository.modelo.Estudiante;
+import com.uce.edu.demo.repository.modelo.EstudianteContadorSemestre;
+import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
+import com.uce.edu.demo.repository.modelo.PersonaSencilla;
 
 @Repository
 @Transactional
@@ -198,6 +202,25 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository {
 		TypedQuery<Estudiante> myQueryFinal = this.entityManager.createQuery(myQuery);
 		return myQueryFinal.getResultList();
 
+	}
+
+	@Override
+	public List<EstudianteSencillo> buscarPorSemestreSencillo(String semestre) {
+		// TODO Auto-generated method stub
+		TypedQuery<EstudianteSencillo> myQuery = this.entityManager.createQuery(
+				"Select NEW com.uce.edu.demo.repository.modelo.EstudianteSencillo(e.nombre, e.apellido, e.semestre) FROM Estudiante e WHERE e.semestre = :datoSemestre",
+				EstudianteSencillo.class);
+		myQuery.setParameter("datoSemestre", semestre);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<EstudianteContadorSemestre> consultarCantidadPorSemestre() {
+		// TODO Auto-generated method stub
+		TypedQuery<EstudianteContadorSemestre> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.repository.modelo.EstudianteContadorSemestre(e.semestre, COUNT(e.semestre)) FROM Estudiante e GROUP BY e.semestre",
+				EstudianteContadorSemestre.class);
+		return myQuery.getResultList();
 	}
 
 }

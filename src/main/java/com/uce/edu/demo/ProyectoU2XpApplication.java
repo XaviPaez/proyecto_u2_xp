@@ -12,6 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.edu.demo.repository.modelo.Estudiante;
+import com.uce.edu.demo.repository.modelo.EstudianteContadorSemestre;
+import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
 import com.uce.edu.demo.repository.modelo.Persona;
 import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
 import com.uce.edu.demo.repository.modelo.PersonaSencilla;
@@ -37,16 +39,22 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		List<PersonaSencilla> listaPersona = this.iPersonaJpaService.buscarPorApellidoSencillo("Cadena");
-		for(PersonaSencilla perItem:listaPersona){
-			LOG.info("Persona Sencilla: "+ perItem);
+		LOG.info("\n");
+		LOG.info("Estudiante sencillo");
+
+		List<EstudianteSencillo> listaEstudianteSencillos = this.estudianteJpaService
+				.buscarPorSemestreSencillo("Octavo");
+		for (EstudianteSencillo estuItem : listaEstudianteSencillos) {
+			LOG.info("Estudiante Sencillo: " + estuItem);
 		}
-		
-		List<PersonaContadorGenero> miListaContadorGenero= this.iPersonaJpaService.consultarCantidadPorGenero();
-		for(PersonaContadorGenero item: miListaContadorGenero) {
-			LOG.info("Genero"+ item);
+		LOG.info("\n");
+
+		LOG.info("Estudiante sencillo con agrupamiento");
+		List<EstudianteContadorSemestre> miListaContadorSemestres = this.estudianteJpaService
+				.consultarCantidadPorSemestre();
+		for (EstudianteContadorSemestre item : miListaContadorSemestres) {
+			LOG.info("Estudiante: " + item);
 		}
-		
-		
+
 	}
 }
