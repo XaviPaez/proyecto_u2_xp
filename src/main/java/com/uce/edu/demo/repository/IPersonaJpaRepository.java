@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
+import com.uce.edu.demo.repository.modelo.PersonaSencilla;
 
 @Repository
 public interface IPersonaJpaRepository {
@@ -14,6 +16,8 @@ public interface IPersonaJpaRepository {
 	public List<Persona> buscarPorGenero(String genero);
 
 	public List<Persona> buscarPorApellido(String apellido);
+
+	public List<PersonaSencilla> buscarPorApellidoSencillo(String apellido);
 
 	public List<Persona> buscarPorNombreApellido(String nombre, String apellido);
 
@@ -45,5 +49,7 @@ public interface IPersonaJpaRepository {
 
 	public Persona buscarDinamicamente(String nombre, String apellido, String genero);
 
-	public Persona buscarDinamicamentePredicados(String nombre, String apellido, String genero) ;
+	public Persona buscarDinamicamentePredicados(String nombre, String apellido, String genero);
+
+	public List<PersonaContadorGenero> consultarCantidadPorGenero();
 }
