@@ -6,20 +6,19 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.repository.modelo.onetoone.Ciudadano;
+import com.uce.edu.demo.repository.modelo.onetomany.Habitacion;
 
 @Repository
 @Transactional
-public class CiudadanoRepositoryImpl implements ICiudadanoRepository {
+public class HabitacionRepositoryImpl implements IHabitacionRepository {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
-	public void insertar(Ciudadano ciudadano) {
-		// TODO Auto-generated method stub
+	public void insertar(Habitacion habitacion) {
+		this.entityManager.persist(habitacion);
 
-		this.entityManager.persist(ciudadano);
 	}
 
 }

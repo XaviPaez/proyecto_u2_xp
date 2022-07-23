@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.format.number.money.MonetaryAmountFormatter;
+
 @Entity
 @Table(name = "ciudadanop")
 public class CiudadanoP {
@@ -29,6 +31,7 @@ public class CiudadanoP {
 	private String cedula;
 	@Column(name = "ciup_fecha_nacimiento")
 	private LocalDateTime fechaNacimiento;
+	
 
 	@OneToOne(mappedBy = "ciudadanop", cascade = CascadeType.ALL)
 	private Pasaporte pasaporte;
@@ -36,7 +39,7 @@ public class CiudadanoP {
 	@Override
 	public String toString() {
 		return "CiudadanoP [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula
-				+ ", fechaNacimiento=" + fechaNacimiento + ", pasaporte=" + pasaporte + "]";
+				+ ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 
 	// SET Y GET
