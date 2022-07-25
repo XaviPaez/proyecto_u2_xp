@@ -1,5 +1,7 @@
 package com.uce.edu.demo;
 
+import java.time.LocalDateTime;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +11,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.onetomany.Habitacion;
-import com.uce.edu.demo.repository.modelo.onetomany.Hotel;
+import com.uce.edu.demo.repository.modelo.onetomany.Actor;
+import com.uce.edu.demo.repository.modelo.onetomany.Pelicula;
+import com.uce.edu.demo.service.IActorService;
 import com.uce.edu.demo.service.ICiudadanoPJpaService;
 import com.uce.edu.demo.service.ICiudadanoService;
 import com.uce.edu.demo.service.IEstudianteJpaService;
 import com.uce.edu.demo.service.IHabitacionService;
 import com.uce.edu.demo.service.IHotelService;
+import com.uce.edu.demo.service.IPeliculaService;
 import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
@@ -37,6 +41,10 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 	private IHotelService hotelService;
 	@Autowired
 	private IHabitacionService habitacionService;
+	@Autowired
+	private IPeliculaService iPeliculaService;
+	@Autowired
+	private IActorService actorService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2XpApplication.class, args);
@@ -46,25 +54,28 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Hotel hotel=new Hotel();
-		hotel.setNombre("Hilton Colon GYE");
-		hotel.setDireccion("Malecon");
-		this.hotelService.insertar(hotel);
 		
-		Habitacion habi1 = new Habitacion();
-		habi1.setNumero("A2334");
-		habi1.setPiso("10");
-		habi1.setTipo("Familiar");
-		habi1.setHotel(hotel);
+
+		LOG.info("\n");
+		LOG.info("Insertar");
+		Pelicula pelicula1=new Pelicula();
+		pelicula1.setNombre("Spiderman 2");
+		pelicula1.setFechaEstreno(LocalDateTime.now());
+		this.iPeliculaService.insertar(pelicula1);
 		
-		Habitacion habi2 = new Habitacion();
-		habi2.setNumero("1231223");
-		habi2.setPiso("1");
-		habi2.setTipo("Matrimonial");
-		habi2.setHotel(hotel);
 		
-		this.habitacionService.insertar(habi1);
-		this.habitacionService.insertar(habi2);
+		LOG.info("\n");
+		LOG.info("Actualizar");
+		pelicula1.setNombre("Spiderman 4");
+		this.iPeliculaService.actualizar(pelicula1);
+		
+		LOG.info("\n");
+		LOG.info("Buscar");
+		LOG.info("Pelicula encontrada: "+this.iPeliculaService.buscar(2));
+		
+		LOG.info("\n");
+		LOG.info("Eliminar");
+		this.iPeliculaService.eliminar(2);
 		
 	}
 }
