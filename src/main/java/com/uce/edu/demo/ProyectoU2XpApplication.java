@@ -1,6 +1,8 @@
 package com.uce.edu.demo;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.repository.modelo.manytomany.Autor;
+import com.uce.edu.demo.repository.modelo.manytomany.Libro;
 import com.uce.edu.demo.repository.modelo.onetomany.Actor;
 import com.uce.edu.demo.repository.modelo.onetomany.Pelicula;
 import com.uce.edu.demo.service.IActorService;
@@ -19,6 +23,7 @@ import com.uce.edu.demo.service.ICiudadanoService;
 import com.uce.edu.demo.service.IEstudianteJpaService;
 import com.uce.edu.demo.service.IHabitacionService;
 import com.uce.edu.demo.service.IHotelService;
+import com.uce.edu.demo.service.ILibroService;
 import com.uce.edu.demo.service.IPeliculaService;
 import com.uce.edu.demo.service.IPersonaJpaService;
 
@@ -45,6 +50,8 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 	private IPeliculaService iPeliculaService;
 	@Autowired
 	private IActorService actorService;
+	@Autowired
+	private ILibroService iLibroService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2XpApplication.class, args);
@@ -54,28 +61,24 @@ public class ProyectoU2XpApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+	
+		
+		Autor autor=new Autor();
+		autor.setNombre("Bryan Adams");
+		Set<Autor> autors=new HashSet<>();
+		autors.add(autor);
+	
+		
+		Libro libro= new Libro();
+		libro.setTitulo("Musica");
+		libro.setCantidadPaginas(100);
+		libro.setAutors(autors);
+		
+		this.iLibroService.insertar(libro);
 		
 
-		LOG.info("\n");
-		LOG.info("Insertar");
-		Pelicula pelicula1=new Pelicula();
-		pelicula1.setNombre("Spiderman 2");
-		pelicula1.setFechaEstreno(LocalDateTime.now());
-		this.iPeliculaService.insertar(pelicula1);
 		
-		
-		LOG.info("\n");
-		LOG.info("Actualizar");
-		pelicula1.setNombre("Spiderman 4");
-		this.iPeliculaService.actualizar(pelicula1);
-		
-		LOG.info("\n");
-		LOG.info("Buscar");
-		LOG.info("Pelicula encontrada: "+this.iPeliculaService.buscar(2));
-		
-		LOG.info("\n");
-		LOG.info("Eliminar");
-		this.iPeliculaService.eliminar(2);
+
 		
 	}
 }
