@@ -33,6 +33,7 @@ public class MatriculaGestorServiceImpl implements IMatriculaGestorService {
 	@Override
 	public void generar(String cedula, String placa) {
 		// TODO Auto-generated method stub
+		
 		Propietario propietario = this.iPropietarioJpaRepository.consultar(cedula);
 		Vehiculo vehiculo = this.iVehiculoJpaRepository.buscar(placa);
 		String tipo = vehiculo.getTipo();

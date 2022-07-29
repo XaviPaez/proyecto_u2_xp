@@ -36,6 +36,7 @@ public class PropietarioJpaRepositoryImpl implements IPropietarioJpaRepository {
 		Query jpqlQuery=this.entityManager.createQuery("SELECT p FROM Propietario p WHERE p.cedula = :datoCedula");
 		jpqlQuery.setParameter("datoCedula", cedula);
 		return (Propietario)jpqlQuery.getSingleResult();
+		
 	}
 
 }
